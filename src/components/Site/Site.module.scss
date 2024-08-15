@@ -1,0 +1,16 @@
+.box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.header {
+  width: 10%;
+  height: 100%;
+}
+
+.main {
+  width: 90%;
+  height: 100%;
+}

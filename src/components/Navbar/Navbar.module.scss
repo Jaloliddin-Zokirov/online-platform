@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 25px 0 40px;
+  background: #0000003d;
+}
+
+.up {
+}
+
+.upTwo {
+}
+
+.downTwo {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  &:hover {
+    font-size: 18px;
+    background-color: #fff;
+  }
+}
+
+.down {
+}
+
+.account {
+  position: relative;
+
+  .ak__name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  &:hover {
+    .ak__name {
+      font-size: 18px;
+    }
+    background-color: #fff;
+  }
+
+  .settings__list {
+    position: absolute;
+    top: -95px;
+    right: 20px;
+    left: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    transition: all 0.4s ease;
+  }
+
+  .settings__check {
+    display: flex;
+  }
+
+  .settings__item {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px 20px;
+
+    &:first-child {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    &:hover {
+      background-color: #00000020;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+    }
+  }
+}
+
+.active {
+  .ak__name {
+    font-size: 18px;
+  }
+  background-color: #fff;
+}
