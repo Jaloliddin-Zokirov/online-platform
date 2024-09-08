@@ -1,7 +1,10 @@
 .navbar {
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  max-width: 13%;
   height: 100%;
   padding: 25px 0 40px;
   background: #0000003d;
@@ -34,69 +37,44 @@
 }
 
 .down {
-}
-
-.account {
   position: relative;
+}
 
-  .ak__name {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 12px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-  }
+.menuDisplay {
+  position: absolute;
+  top: -25px;
+  right: -70px;
+  display: none;
+  flex-direction: column;
+  background-color: #94a3b8;
+  border-radius: 8px;
+}
 
+.down:hover > .menuDisplay {
+  display: flex;
+}
+
+.text {
+  display: block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
   &:hover {
-    .ak__name {
-      font-size: 18px;
-    }
-    background-color: #fff;
-  }
-
-  .settings__list {
-    position: absolute;
-    top: -95px;
-    right: 20px;
-    left: 20px;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    transition: all 0.4s ease;
-  }
-
-  .settings__check {
-    display: flex;
-  }
-
-  .settings__item {
-    width: 100%;
-    background-color: #fff;
-    padding: 15px 20px;
-
-    &:first-child {
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-    }
-
-    &:hover {
-      background-color: #00000020;
-    }
-    a {
-      display: block;
-      text-decoration: none;
-    }
+    background-color: #e2e8f0;
   }
 }
 
-.active {
-  .ak__name {
+.ak__name {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  &:hover {
     font-size: 18px;
+    background-color: #fff;
   }
-  background-color: #fff;
 }

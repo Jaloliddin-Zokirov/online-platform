@@ -1,16 +1,16 @@
 import React from "react";
-import styles from "./Teachers.module.scss";
+import styles from "./Settings.module.scss";
 import { Link } from "react-router-dom";
 
-const Teachers = () => {
+const Settings = () => {
   return (
-    <div className={styles.teachers}>
+    <div className={styles.settings}>
       <h2 className={styles.title}>
-        The Teachers section is under development
+        The Settings section is under development
       </h2>
       <Link to={"/"}>Go to Home</Link>
     </div>
   );
 };
 
-export default Teachers;
+export default Settings;
