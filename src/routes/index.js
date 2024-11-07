@@ -58,7 +58,7 @@ import Context from "../Context"; // Import context
 import { fetchUsersDetails } from "../App";
 import Lesson from "../components/Lesson/Lesson";
 import Dashboard from "../components/Dashboard/Dashboard";
-import Video from "../components/Video/Video";
+// import Video from "../components/Video/Video";
 
 const routes = createBrowserRouter([
   {
