@@ -1,7 +1,5 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import SummaryApi from "./common";
 import Context from "./Context";
@@ -44,7 +42,6 @@ function App() {
         fetchUsersDetails, // user detail fetch
       }}
     >
-      <ToastContainer />
       <div className="relative flex items-start justify-between w-[100%] h-[100%]">
         <Navbar />
         <main className="ml-[13%] max-w-[87%] h-[100%]">

@@ -2,19 +2,21 @@ import React, { useContext, useState } from "react";
 import styles from "./Login.module.scss";
 import SummaryApi from "../../common";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import Context from "../../Context";
+import imageTobase64 from "../../helpers/imageTobase64";
+import { message } from "antd";
 
 const Login = () => {
   const [bgPushed, setBgPushed] = useState(true);
   const [forgot, setForgot] = useState(false);
-  const [next, setNext] = useState(false);
-  const [next2, setNext2] = useState(false);
+  // const [next, setNext] = useState(false);
+  // const [next2, setNext2] = useState(false);
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
+    profilePic: "",
   });
 
   const [dataSignIn, setDataSignIn] = useState({
@@ -52,15 +54,15 @@ const Login = () => {
       const dataApi = await dataRespnse.json();
 
       if (dataApi.success) {
-        toast.success(dataApi.message);
+        message.success(dataApi.message);
         setBgPushed(true);
       }
 
       if (dataApi.error) {
-        toast.error(dataApi.message);
+        message.error(dataApi.message);
       }
     } else {
-      toast.warn("Please check password and confirm password");
+      message.warning("Please check password and confirm password");
     }
   };
 
@@ -91,16 +93,30 @@ const Login = () => {
     const dataApi = await dataRespnse.json();
 
     if (dataApi.success) {
-      toast.success(dataApi.message);
-      navigate("/");
       fetchUsersDetails();
+      message.success(dataApi.message);
+      navigate("/");
     }
     if (dataApi.error) {
-        console.log(dataApi.message);
-        
-      toast.error(dataApi.message);
+      console.log(dataApi.message);
+
+      message.error(dataApi.message);
     }
   };
+
+  const handleUploadePic = async (evt) => {
+    const file = evt.target.files[0];
+
+    const imagePic = await imageTobase64(file);
+
+    setData((preve) => {
+      return {
+        ...preve,
+        profilePic: imagePic,
+      };
+    });
+  };
+
   return (
     <div className={styles.login__register}>
       <div className={`${styles.box} ${forgot ? styles.forgotTrue : ""}`}>
@@ -147,44 +163,58 @@ const Login = () => {
               <button>Login</button>
             </form>
           ) : (
-            <form className={styles.form} onSubmit={handleSubmitSignUp}>
-              <h3 className={styles.title}>Register</h3>
-              <div className={styles.inp__box}>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  required
-                  name="name"
-                  value={data.name}
-                  onChange={handleOnChangeSignUp}
-                />
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                  name="email"
-                  value={data.email}
-                  onChange={handleOnChangeSignUp}
-                />
-                <input
-                  type="password"
-                  placeholder="Enter your password"
-                  required
-                  name="password"
-                  value={data.password}
-                  onChange={handleOnChangeSignUp}
-                />
-                <input
-                  type="password"
-                  placeholder="Enter confirm password"
-                  required
-                  name="confirmPassword"
-                  value={data.confirmPassword}
-                  onChange={handleOnChangeSignUp}
-                />
-              </div>
-              <button>Register</button>
-            </form>
+            <div className="relative">
+              <form>
+                <label>
+                  <div className="absolute top-0 w-full text-xs bg-slate-200 py-4 text-center bg-opacity-80 pb-4 pt-2 cursor-pointer">
+                    Upload Photo
+                  </div>
+                  <input
+                    className="hidden"
+                    type="file"
+                    onChange={handleUploadePic}
+                  />
+                </label>
+              </form>
+              <form className={styles.form} onSubmit={handleSubmitSignUp}>
+                <h3 className={styles.title}>Register</h3>
+                <div className={styles.inp__box}>
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    required
+                    name="name"
+                    value={data.name}
+                    onChange={handleOnChangeSignUp}
+                  />
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                    name="email"
+                    value={data.email}
+                    onChange={handleOnChangeSignUp}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Enter your password"
+                    required
+                    name="password"
+                    value={data.password}
+                    onChange={handleOnChangeSignUp}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Enter confirm password"
+                    required
+                    name="confirmPassword"
+                    value={data.confirmPassword}
+                    onChange={handleOnChangeSignUp}
+                  />
+                </div>
+                <button>Register</button>
+              </form>
+            </div>
           )}
 
           {/* <form className={styles.form}>

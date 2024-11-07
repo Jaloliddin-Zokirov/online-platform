@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Courses.module.scss";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Courses = () => {
   

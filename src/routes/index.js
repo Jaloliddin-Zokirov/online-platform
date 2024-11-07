@@ -5,6 +5,8 @@
 // import About from "../components/About/About";
 // import Teachers from "../components/Teachers/Teachers";
 // import Courses from "../components/Courses/Courses";
+// import Lesson from "../components/Lesson/Lesson";
+// import Dashboard from "../components/Dashboard/Dashboard";
 
 // const routes = createBrowserRouter([
 //   {
@@ -15,7 +17,6 @@
 //         path: "",
 //         element: <Home />,
 //       },
-
 //       {
 //         path: "about",
 //         element: <About />,
@@ -28,11 +29,19 @@
 //         path: "courses",
 //         element: <Courses />,
 //       },
+//       {
+//         path: "lesson",
+//         element: <Lesson />,
+//       },
+//       {
+//         path: "dashboard",
+//         element: <Dashboard />,
+//       },
+//       {
+//         path: "login-register",
+//         element: <Login />,
+//       },
 //     ],
-//   },
-//   {
-//     path: "login-register",
-//     element: <Login />,
 //   },
 // ]);
 
@@ -47,17 +56,15 @@ import Teachers from "../components/Teachers/Teachers";
 import Courses from "../components/Courses/Courses";
 import Context from "../Context"; // Import context
 import { fetchUsersDetails } from "../App";
-import { ToastContainer } from "react-toastify";
-import Settings from "../components/Settings/Settings";
 import Lesson from "../components/Lesson/Lesson";
-// You may need to refactor this to ensure it's accessible
+import Dashboard from "../components/Dashboard/Dashboard";
+import Video from "../components/Video/Video";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: (
       <Context.Provider value={{ fetchUsersDetails }}>
-        <ToastContainer />
         <App />
       </Context.Provider>
     ),
@@ -83,8 +90,8 @@ const routes = createBrowserRouter([
         element: <Lesson />,
       },
       {
-        path: "settings",
-        element: <Settings />,
+        path: "dashboard",
+        element: <Dashboard />,
       },
     ],
   },
@@ -92,7 +99,6 @@ const routes = createBrowserRouter([
     path: "login-register",
     element: (
       <Context.Provider value={{ fetchUsersDetails }}>
-        <ToastContainer />
         <Login />
       </Context.Provider>
     ),

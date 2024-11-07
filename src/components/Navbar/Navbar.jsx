@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Navbar.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SchoolIcon from "@mui/icons-material/School";
 import HomeIcon from "@mui/icons-material/Home";
 import { useDispatch, useSelector } from "react-redux";
 import SummaryApi from "../../common";
-import { toast } from "react-toastify";
 import { setUserDetails } from "../../store/userSlice";
+import { message } from "antd";
 
 const Navbar = () => {
   const user = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
-  const [menuDisplay, setMenuDisplay] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     const fetchData = await fetch(SummaryApi.logout_user.url, {
@@ -24,11 +24,12 @@ const Navbar = () => {
     const data = await fetchData.json();
 
     if (data.success) {
-      toast.success(data.message);
+      message.success(data.message);
       dispatch(setUserDetails(null));
+      navigate("/");
     }
     if (data.error) {
-      toast.error(data.message);
+      message.error(data.message);
     }
   };
 
@@ -57,20 +58,22 @@ const Navbar = () => {
         {user !== null ? (
           <>
             <div className={styles.ak__name}>
-              <AccountCircleIcon />
-              {user.name}
+              {user?.profilePic ? (
+                <img
+                  src={user?.profilePic}
+                  className="w-10 h-10 rounded-full"
+                  alt={user?.name}
+                />
+              ) : (
+                <AccountCircleIcon />
+              )}
+              {user?.name}
             </div>
             <div className={styles.menuDisplay}>
-              <Link className={styles.text} to={"settings"}>
-                Settings
+              <Link className={styles.text} to={"dashboard"}>
+                Dashboard
               </Link>
-              <span
-                className={styles.text}
-                onClick={() => {
-                  setMenuDisplay((preve) => !preve);
-                  handleLogout();
-                }}
-              >
+              <span className={styles.text} onClick={() => handleLogout()}>
                 Logout
               </span>
             </div>

@@ -1,0 +1,13 @@
+.video {
+    display: grid;
+    place-items: center;
+    gap: 20px;
+    height: 100%;
+    padding: 40px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
